@@ -1,0 +1,16 @@
+# Build artefacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+
+# Editor noise
+.DS_Store
+*.swp
