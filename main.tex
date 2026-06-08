@@ -26,7 +26,10 @@
 \setlength{\tabcolsep}{4pt}
 
 % ---- helper for long hex strings: allow break after any char ----
+% allow the renderer to break long hex inside tables and itemize without
+% leaving an orphan trailing character on the next line
 \newcommand{\hex}[1]{\texttt{\seqsplit{#1}}}
+\tolerance=2000
 
 % ---- left-aligned p-column for tabularx ----
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -50,11 +53,12 @@
 A Vendor-Neutral Reference for FP8, BF16, MXFP4, and Microscaling Formats}
 
 \author{Dmitrii Vasilev\thanks{%
-  \texttt{github.com/gHashTag};
-  ORCID \href{https://orcid.org/0009-0008-4294-6159}{0009-0008-4294-6159}.}\\
+  Correspondence: \texttt{dao999nft@gmail.com}.
+  GitHub: \texttt{github.com/gHashTag}.
+  ORCID: \href{https://orcid.org/0009-0008-4294-6159}{0009-0008-4294-6159}.}\\
 \small Trinity S\textsuperscript{3}AI}
 
-\date{2026-06-08 (preprint)}
+\date{2026-06-08 (preprint v4)}
 % ======================================================================
 
 \begin{document}
@@ -68,15 +72,16 @@ outpaced the availability of vendor-neutral, bit-exact reference material.
 Engineers porting models across accelerators encounter silent divergences that
 are difficult to diagnose without a shared ruler.
 
-This paper describes a catalog of 84 numeric formats spanning 13 families, and
-a suite of six bit-exact conformance packs covering GF16, MXFP4 element, BF16,
-FP8 E4M3, FP8 E5M2, and E8M0 block scale.  Each pack is a self-contained JSON
-document with a SHA-256 fingerprint, a shared row schema, and an anchor vector
-that encodes $3.0$ -- the identity $\varphi^{2} + 1/\varphi^{2} = 3$
-\cite{gf_arxiv} -- as a cross-pack sanity check.  Packs are cross-validated
-against \texttt{ml\_dtypes} 0.5.4 (Google/JAX); any divergence is documented
-explicitly and interpreted as a spec-permitted interpretation gap rather than
-hidden.  The work is framed as registry filling: it does not propose new
+This paper describes a catalog of 84 numeric formats spanning 13 families, a
+suite of six bit-exact conformance packs covering GF16, MXFP4 element, BF16,
+FP8 E4M3, FP8 E5M2, and E8M0 block scale, and an IEEE P3109 v3.2.0 cross-walk
+that maps each pack to its corresponding standards-track configured format.
+Each pack is a self-contained JSON document with a SHA-256 fingerprint, a
+shared row schema, and an anchor vector that encodes $3.0$ -- the identity
+$\varphi^{2} + 1/\varphi^{2} = 3$ \cite{gf_arxiv} -- as a cross-pack sanity
+check.  Packs are cross-validated against \texttt{ml\_dtypes} 0.5.4
+(Google/JAX); any divergence is documented explicitly and interpreted as a
+spec-permitted interpretation gap rather than hidden.  The work is framed as registry filling: it does not propose new
 formats, make model-accuracy claims, or assert superiority over any vendor's
 implementation.  All artifacts are publicly available at
 \url{https://github.com/gHashTag/t27} under an open license.
@@ -959,6 +964,16 @@ reproducibility depends on the upstream availability of
 document; if any of these become unavailable, the verification harness
 would need a mirror layer not currently implemented.
 
+\paragraph{No dependency on unpublished work.}
+The results of this paper -- the 84-format catalog, the six conformance
+packs, the P3109 v3.2.0 cross-walk, and the two documented interpretation
+gaps -- depend only on artifacts cited in the bibliography that are
+publicly available (open-license repositories, published standards, and the
+arXiv preprint \cite{gf_arxiv}).  No claim, table, or theorem in this paper
+draws on unpublished or under-review manuscripts.  Forthcoming follow-up
+work on related topics is mentioned only as future-work direction in
+Section~\ref{sec:future} and is explicitly out of scope here.
+
 None of these limitations alter the central claim of the paper: that an
 84-format catalog with six conformance packs, an IEEE P3109 cross-walk,
 and two documented interpretation gaps is now a usable, reproducible
@@ -971,11 +986,12 @@ from what it is not.
 The author thanks the maintainers of \texttt{ml\_dtypes} (Google/JAX) for
 providing the ground-truth reference implementation, and the OCP Microscaling
 working group for publishing the MX v1.0 specification in open-access form.
-This work was carried out at Trinity S\textsuperscript{3}AI.  The author
-thanks the Tenstorrent tt-metal reviewers \texttt{@amahmudTT} and
-\texttt{@rtawfik01} for substantive feedback on related FP8 conformance threads
-that informed the framing of Section~\ref{sec:discussion}.  No external
-financial support was involved in the preparation of this preprint.
+This work was carried out at Trinity S\textsuperscript{3}AI by the author
+(ORCID \href{https://orcid.org/0009-0008-4294-6159}{0009-0008-4294-6159}).
+The author thanks the Tenstorrent tt-metal reviewers \texttt{@amahmudTT}
+and \texttt{@rtawfik01} for substantive feedback on related FP8 conformance
+threads that informed the framing of Section~\ref{sec:discussion}.  No
+external financial support was involved in the preparation of this preprint.
 
 % ======================================================================
 \begin{thebibliography}{99}
