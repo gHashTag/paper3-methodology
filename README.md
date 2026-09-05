@@ -1,7 +1,8 @@
 # paper3-methodology
 
-An 84-Format Numeric Catalog with Bit-Exact Conformance Vectors:
-A Vendor-Neutral Reference for FP8, BF16, MXFP4, and Microscaling Formats.
+Golden Ruler: A Numeric Format Catalog with Bit-Exact Conformance Vectors
+for FP8, BF16, MXFP4, and Microscaling Formats --
+[arXiv:2606.09686](https://arxiv.org/abs/2606.09686) (v3, announced 7 Sep 2026).
 
 ## Author
 
@@ -32,6 +33,11 @@ A documented divergence on FP8 E4M3 overflow handling (saturate-to-max
 versus overflow-to-NaN, OCP MX v1.0 permits both) is published as a
 Discussion section rather than smoothed over.
 
+> Note (2026-09-05): the format count is a live SSOT invariant, not a
+> fixed number -- 84 in this repository's manuscript revision, 83 at
+> arXiv v2 (22 Jun 2026), 109 at arXiv v3 (Sep 2026). Source of truth:
+> `tools/gen_formats_catalog.py` in `gHashTag/t27` ("parsed N formats").
+
 ## Anchor
 
 `phi^2 + 1/phi^2 = 3` (Lucas number L_2). Used as a universal numeric
@@ -42,20 +48,30 @@ microscaling format in the catalog.
 
 - [arXiv:2606.05017](https://arxiv.org/abs/2606.05017) -- GoldenFloat
   preprint (cs.AR), anchor citation.
-- [`gHashTag/t27`](https://github.com/gHashTag/t27) -- 80-format
-  SSOT catalog (`specs/numeric/formats_catalog.t27`).
+- [`gHashTag/t27`](https://github.com/gHashTag/t27) -- the SSOT
+  catalog (`specs/numeric/formats_catalog.t27`); the format count is a
+  live invariant, 109 formats as of Sep 2026.
 - [`gHashTag/tt-lang-t27`](https://github.com/gHashTag/tt-lang-t27) --
   Python package mirror (PyPI: `tt-lang-t27`), `v0.4.0` release with
   6 conformance packs.
 - [`gHashTag/tt-trinity-corona`](https://github.com/gHashTag/tt-trinity-corona) --
-  silicon-grade format-conformance oracle (TTGF26a / GF180MCU).
+  format-conformance oracle design targeting TTGF26a / GF180MCU
+  (GDS + precheck passed; not submitted, no die).
 - [`gHashTag/claim-audit-lab`](https://github.com/gHashTag/claim-audit-lab) --
   public methodology audit cases.
 
 ## Citation
 
-When the paper is on arXiv, a BibTeX entry will be added here. Until
-then, please cite by the file SHA-256 above plus the repository URL.
+The paper is on arXiv as [arXiv:2606.09686](https://arxiv.org/abs/2606.09686)
+(v1 8 Jun 2026; v2 22 Jun 2026, live; v3 submitted 4 Sep 2026 under the
+title *Golden Ruler ...*, announced 7 Sep 2026). Cite:
+
+> Vasilev, D. (2026). Golden Ruler: A Numeric Format Catalog with
+> Bit-Exact Conformance Vectors for FP8, BF16, MXFP4, and Microscaling
+> Formats. arXiv:2606.09686.
+
+To cite this repository's manuscript revision specifically, use the
+file SHA-256 above plus the repository URL.
 
 ## Reproducibility
 
@@ -82,5 +98,7 @@ No external data dependencies; tables are inline literals.
 | Date | Event |
 |---|---|
 | 2026-06-08 | v3-trinity finalized, ORCID locked, repo published. |
-| TBD | arXiv submission (cs.AR primary, cs.MS cross-list). |
+| 2026-06-08 | arXiv v1 posted -- [arXiv:2606.09686](https://arxiv.org/abs/2606.09686) (cs.AR primary; cs.AI, cs.MS, cs.PF, math.NA cross-lists). |
+| 2026-06-22 | arXiv v2 (17 pp), the live version. |
+| 2026-09-04 | arXiv v3 submitted under the title *Golden Ruler: A Numeric Format Catalog with Bit-Exact Conformance Vectors for FP8, BF16, MXFP4, and Microscaling Formats* (19 pp; 109 formats); announces 2026-09-07. |
 
